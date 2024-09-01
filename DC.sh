@@ -19,9 +19,11 @@ while true; do
     if [ "$temp" -ge "$MAX_TEMP" ] && [ "$is_charging" -eq 2 ]; then
         echo "电池温度过高（$temp/10°C）停止充电."
         su root -c dumpsys battery set ac 0
+		su root -c XXX  亮屏快冲关
     elif [ "$temp" -lt "$MIN_TEMP" ] && [ "$is_charging" -eq 1 ]; then
         # 如果电池温度低于40度且不在充电，则开始充电
         echo "电池温度过低（$temp/10°C）开始充电."
+		su root -c XXX  亮屏快冲开
         su root -c dumpsys battery set ac 1
     else
         echo "电池温度在安全范围内 ($temp/10°C)."
